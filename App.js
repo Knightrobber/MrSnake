@@ -22,13 +22,23 @@ import {
   Image,
   Dimensions,
   Button,
+  TextInput,
 } from 'react-native';
 import Canvas from 'react-native-canvas'
+import {
+  accelerometer,
+  gyroscope,
+  setUpdateIntervalForType,
+  SensorTypes
+} from "react-native-sensors";
+import { map, filter } from "rxjs/operators";
+
 
 
 var x;
 var canvas
 var tempx
+setUpdateIntervalForType(SensorTypes.accelerometer, 500); // defaults to 100ms
 
 class App extends Component {
 
@@ -40,34 +50,54 @@ class App extends Component {
    y:0,
    count:0,
    ctx:null,
+   canvasHeight:null,
    interval:null,
-   initialDate:null
+   initialDate:null,
+   accelerometerX1:0.1,
+   timeX:0,
+   intervalX:null,
 
   }
+
   }
 
 componentDidMount(){
   canvas = this.refs.canvas
   canvas.width = Dimensions.get('window').width;
-  canvas.height = Dimensions.get('window').height;
+  canvas.height = (70/100) * Dimensions.get('window').height;
+  
+  console.log("canvas width " + canvas.width + " canvas height " + canvas.height);
+  console.log("Screen Width and height " + Dimensions.get('window').height + " width" + Dimensions.get('window').width)
   let ctxL = canvas.getContext("2d")
+  ctxL.fillStyle = "pink"
+  ctxL.fillRect(0,0,canvas.width,canvas.height);
   ctxL.fillStyle = "red"
   ctxL.fillRect(0,0,20,20);
   let co_ordinates = [[0,0]]
   database().ref('/Movement').set({
     Co_ordinates:co_ordinates
   })
+
+  accelerometer.subscribe(({x,y})=>{
+    this.setState({
+      accelerometerX1:x
+    })
+    console.log("the value of " + "x  " + x);
+  })
   this.setState({
+    ctx:ctxL
+  },function(){
+    setInterval(()=>{this.moveRectGesture()},501);
+  });
+  
+ 
+  /*this.setState({
     ctx:ctxL,
     initialDate:new Date(),
     interval:setInterval(()=>{this.moveRect()},1000),
     tenSecDate:new Date()
   });
-  
-  
-
-  
-
+  */
 }
 
 
@@ -155,17 +185,74 @@ if(dateTemp.getTime() - this.state.initialDate.getTime() >=15000){
 
 }
 
- 
+
+moveRectGesture(){
+let ax = this.state.accelerometerX1;
+let vx = ax * 400;
+vx = (vx/(4*10000) + 1/70);
+let tx = 5/vx;
+if(tx<0)
+tx = -tx;
+if(tx<380 && vx>0){
+this.setState({
+  intervalX:setInterval(() => {this.movePosX()},tx),
+  intervalTimeX:tx,
+  time:tx
+})
+}
+}
+
+movePosX(){
+  let x,time;
+  if(this.state.x + 5 > Dimensions.get('window').width - 20 )
+  x = 0;
+  else
+  x = this.state.x + 5;
+
+    if(this.state.time >= 350)
+    clearInterval(this.state.intervalX);
+    else{
+    let ctxL = this.state.ctx;
+    ctxL.fillStyle='pink'
+    ctxL.fillRect(this.state.x,this.state.y,20,20);
+    ctxL.fillStyle = 'red';
+    ctxL.fillRect(x,this.state.y,20,20);
+    this.setState({
+      x:x,
+      time: this.state.time + this.state.intervalTimeX
+    })
+    }
+
+    
+}
+
+stopLoop(){
+clearInterval(this.state.interval);
+}
+
+startLoop(){
+  /*this.setState({
+    ctx:ctxL,
+    initialDate:new Date(),
+    interval:setInterval(()=>{this.moveRect()},1000),
+    tenSecDate:new Date()
+  });
+  */
+ this.refs.count.placeholder = "23"
+ this.state.count.value="123"
+
+}
 render(){
   return (
     
       <View style= {Styles.container}>
-        <View>
-         
-          <Canvas ref = "canvas" />
-          
-        </View>
+        <TextInput ref="count" placeholder="count" value=""/>
+          <Canvas  width={150} height = {300} ref = "canvas"/>
+          <Text>HEy</Text>
+        <Button onPress={()=>{this.stopLoop()}} title="Stop Loop" color="#009933"/>
+        <Button onPress={()=>{this.startLoop()}} title="Start Loop" color="#009933"/>
         
+       
       </View>
     
   );
@@ -181,7 +268,7 @@ top:0,
 left:0,
 right:0,
 bottom:0,
-backgroundColor:'black'
+backgroundColor:'green'
 },
 img :{
   width:40,

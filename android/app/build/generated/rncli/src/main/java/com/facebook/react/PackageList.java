@@ -17,6 +17,8 @@ import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
 // react-native-fs
 import com.rnfs.RNFSPackage;
+// react-native-sensors
+import com.sensors.RNSensorsPackage;
 // react-native-webview
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 
@@ -67,6 +69,7 @@ public class PackageList {
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseDatabasePackage(),
       new RNFSPackage(),
+      new RNSensorsPackage(),
       new RNCWebViewPackage()
     ));
   }

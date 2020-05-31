@@ -9,23 +9,23 @@
 9        android:targetSdkVersion="28" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/debug/AndroidManifest.xml:5:5-77
-11-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/debug/AndroidManifest.xml:5:22-75
+11-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/debug/AndroidManifest.xml:5:5-77
+11-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/debug/AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:4:5-67
-12-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:4:22-64
+12-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:4:5-67
+12-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 13-->[com.facebook.flipper:flipper:0.33.1] /Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/b14016ab0a11bafe342453481e126517/jetified-flipper-0.33.1/AndroidManifest.xml:16:5-76
 13-->[com.facebook.flipper:flipper:0.33.1] /Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/b14016ab0a11bafe342453481e126517/jetified-flipper-0.33.1/AndroidManifest.xml:16:22-73
 14    <uses-permission android:name="android.permission.WAKE_LOCK" />
-14-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-68
-14-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-65
+14-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-68
+14-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-65
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-79
-15-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
+15-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-79
+15-->[:react-native-firebase_database] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/@react-native-firebase/database/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
 16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-16-->[:react-native-fs] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-fs/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-81
-16-->[:react-native-fs] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-fs/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-78
+16-->[:react-native-fs] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-fs/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-81
+16-->[:react-native-fs] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-fs/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-78
 17    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 17-->[com.google.firebase:firebase-iid:20.1.5] /Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/ed783ed6254827bc46be3f89c881b86c/firebase-iid-20.1.5/AndroidManifest.xml:26:5-82
 17-->[com.google.firebase:firebase-iid:20.1.5] /Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/ed783ed6254827bc46be3f89c881b86c/firebase-iid-20.1.5/AndroidManifest.xml:26:22-79
@@ -34,67 +34,67 @@
 18-->[com.google.android.gms:play-services-measurement:17.4.1] /Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/c835347705c69f8598202e27770fc9d5/play-services-measurement-17.4.1/AndroidManifest.xml:26:22-107
 19
 20    <application
-20-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:6:5-25:19
+20-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:6:5-25:19
 21        android:name="com.mrsnake.MainApplication"
-21-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:7:7-38
+21-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:7:7-38
 22        android:allowBackup="false"
-22-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:11:7-34
+22-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:11:7-34
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 23-->[androidx.core:core:1.1.0] /Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/5644a94d9f003a0b90383b8c36ca5e5e/core-1.1.0/AndroidManifest.xml:24:18-86
 24        android:debuggable="true"
 25        android:icon="@mipmap/ic_launcher"
-25-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:9:7-41
+25-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:9:7-41
 26        android:label="@string/app_name"
-26-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:8:7-39
+26-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:8:7-39
 27        android:roundIcon="@mipmap/ic_launcher_round"
-27-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:10:7-52
+27-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:10:7-52
 28        android:theme="@style/AppTheme"
-28-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:12:7-38
+28-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:12:7-38
 29        android:usesCleartextTraffic="true" >
-29-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/debug/AndroidManifest.xml:7:18-53
+29-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/debug/AndroidManifest.xml:7:18-53
 30        <activity
-30-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:13:7-23:18
+30-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:13:7-23:18
 31            android:name="com.mrsnake.MainActivity"
-31-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:14:9-37
+31-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:14:9-37
 32            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-32-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:16:9-86
+32-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:16:9-86
 33            android:label="@string/app_name"
-33-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:15:9-41
+33-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:15:9-41
 34            android:launchMode="singleTask"
-34-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:17:9-40
+34-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:17:9-40
 35            android:windowSoftInputMode="adjustResize" >
-35-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:18:9-51
+35-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:18:9-51
 36            <intent-filter>
-36-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:19:9-22:25
+36-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:19:9-22:25
 37                <action android:name="android.intent.action.MAIN" />
-37-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:20:13-65
-37-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:20:21-62
+37-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:20:13-65
+37-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:20:21-62
 38
 39                <category android:name="android.intent.category.LAUNCHER" />
-39-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:21:13-73
-39-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:21:23-70
+39-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:21:13-73
+39-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:21:23-70
 40            </intent-filter>
 41        </activity>
 42        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-42-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:24:7-84
-42-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/src/main/AndroidManifest.xml:24:17-81
+42-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:24:7-84
+42-->/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/src/main/AndroidManifest.xml:24:17-81
 43
 44        <provider
-44-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
+44-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
 45            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
-45-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-83
+45-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-83
 46            android:authorities="com.mrsnake.fileprovider"
-46-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-64
+46-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-64
 47            android:exported="false"
-47-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+47-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
 48            android:grantUriPermissions="true" >
-48-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+48-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
 49            <meta-data
-49-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:63
+49-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:63
 50                android:name="android.support.FILE_PROVIDER_PATHS"
-50-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+50-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
 51                android:resource="@xml/file_provider_paths" />
-51-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-60
+51-->[:react-native-webview] /Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-60
 52        </provider>
 53
 54        <service

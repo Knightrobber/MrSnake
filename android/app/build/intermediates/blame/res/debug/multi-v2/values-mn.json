@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mn/values-mn.xml",
+            "outputFile": "/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mn/values-mn.xml",
             "map": [
                 {
                     "source": "/Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/45bb801ab1148052b41001ba0c7a905f/play-services-base-17.0.0/res/values-mn/values.xml",

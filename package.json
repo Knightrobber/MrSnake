@@ -17,6 +17,7 @@
     "react-native": "0.62.1",
     "react-native-canvas": "^0.1.37",
     "react-native-fs": "^2.16.6",
+    "react-native-sensors": "^6.0.2",
     "react-native-webview": "^9.0.2"
   },
   "devDependencies": {

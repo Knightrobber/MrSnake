@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
+            "outputFile": "/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
             "map": [
                 {
                     "source": "/Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/008f243bf6dd08f82e37115d7cd7d56c/appcompat-1.1.0/res/values-v22/values-v22.xml",

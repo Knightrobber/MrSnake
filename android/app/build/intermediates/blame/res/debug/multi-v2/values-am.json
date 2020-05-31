@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sisirreddy/Desktop/Development/reactProjects/MrSnake/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-am/values-am.xml",
+            "outputFile": "/Users/sisirreddy/Desktop/Development/reactProjects/MrSnakeNew/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-am/values-am.xml",
             "map": [
                 {
                     "source": "/Users/sisirreddy/.gradle/caches/transforms-2/files-2.1/650c7b5ff6ae7d780cca2a345c4f27ff/jetified-play-services-basement-17.0.0/res/values-am/values.xml",
