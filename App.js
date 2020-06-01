@@ -45,19 +45,34 @@ class App extends Component {
   constructor(){
   super();
   this.moveRect = this.moveRect.bind(this);
+  this.sendData = this.sendData.bind(this);
+  this.moveRectGesture= this.moveRectGesture.bind(this);
   this.state = {
+   start:0,
+   pause:0,
    x:0,
    y:0,
-   count:0,
+   run:'',
+   runCount:0,
+   pauseCount:0,
+   sendDataInterval:null,
+   startMotion:null,
    ctx:null,
    canvasHeight:null,
    interval:null,
    initialDate:null,
-   accelerometerX1:0.1,
+   accelerometerX:0.1,
+   accelerometerY:0.1,
    timeX:0,
+   timeXN:0,
+   timeY:0,
+   timeYN:0,
    intervalX:null,
+   intervalXN:null,
+   intervalY:null,
+   intervalYN:null
 
-  }
+  };
 
   }
 
@@ -65,7 +80,7 @@ componentDidMount(){
   canvas = this.refs.canvas
   canvas.width = Dimensions.get('window').width;
   canvas.height = (70/100) * Dimensions.get('window').height;
-  
+  this.setState({canvasHeight:canvas.height});
   console.log("canvas width " + canvas.width + " canvas height " + canvas.height);
   console.log("Screen Width and height " + Dimensions.get('window').height + " width" + Dimensions.get('window').width)
   let ctxL = canvas.getContext("2d")
@@ -80,15 +95,16 @@ componentDidMount(){
 
   accelerometer.subscribe(({x,y})=>{
     this.setState({
-      accelerometerX1:x
+      accelerometerX:x,
+      accelerometerY:y
     })
-    console.log("the value of " + "x  " + x);
+    //console.log("the value of " + "y  " + y);
   })
+  
   this.setState({
     ctx:ctxL
-  },function(){
-    setInterval(()=>{this.moveRectGesture()},501);
   });
+  
   
  
   /*this.setState({
@@ -187,29 +203,64 @@ if(dateTemp.getTime() - this.state.initialDate.getTime() >=15000){
 
 
 moveRectGesture(){
-let ax = this.state.accelerometerX1;
-let vx = ax * 400;
+  console.log("in moveRect");
+let ax = this.state.accelerometerX;
+let ay = this.state.accelerometerY;
+let vx = ax * 400; let vy = ay*400;
 vx = (vx/(4*10000) + 1/70);
-let tx = 5/vx;
+vy = (vy/(4*10000) + 1/70);
+let tx = 5/vx;let ty = 5/vy;
 if(tx<0)
 tx = -tx;
-if(tx<380 && vx>0){
+if(ty<0)
+ty=-ty;
+
+if(tx<380){
+  if(vx<0){
 this.setState({
   intervalX:setInterval(() => {this.movePosX()},tx),
   intervalTimeX:tx,
-  time:tx
+  timeX:tx
 })
 }
+else if(vx>0){
+  this.setState({
+    intervalXN:setInterval(() => {this.movePosXN()},tx),
+    intervalTimeXN:tx,
+    timeXN:tx
+  })
+  
+}
+
+}
+if(ty<380){
+  if(vy>0){
+    this.setState({
+      intervalY:setInterval(() => {this.movePosY()},ty),
+      intervalTimeY:ty,
+      timeY:ty
+    })
+  }
+ else if(vy<0)
+ {
+  this.setState({
+    intervalYN:setInterval(() => {this.movePosYN()},ty),
+    intervalTimeYN:ty,
+    timeYN:ty
+  })
+ }
+}
+
 }
 
 movePosX(){
-  let x,time;
+  let x;
   if(this.state.x + 5 > Dimensions.get('window').width - 20 )
   x = 0;
   else
   x = this.state.x + 5;
 
-    if(this.state.time >= 350)
+    if(this.state.timeX >= 350)
     clearInterval(this.state.intervalX);
     else{
     let ctxL = this.state.ctx;
@@ -219,40 +270,211 @@ movePosX(){
     ctxL.fillRect(x,this.state.y,20,20);
     this.setState({
       x:x,
-      time: this.state.time + this.state.intervalTimeX
+      timeX: this.state.timeX + this.state.intervalTimeX
     })
     }
 
     
 }
 
-stopLoop(){
-clearInterval(this.state.interval);
+movePosXN(){
+  let x;
+  if(this.state.x - 5 < 0 )
+  x = Dimensions.get('window').width-20;
+  else
+  x = this.state.x - 5;
+
+    if(this.state.timeXN >= 350)
+    clearInterval(this.state.intervalXN);
+    else{
+    let ctxL = this.state.ctx;
+    ctxL.fillStyle='pink'
+    ctxL.fillRect(this.state.x,this.state.y,20,20);
+    ctxL.fillStyle = 'red';
+    ctxL.fillRect(x,this.state.y,20,20);
+    this.setState({
+      x:x,
+      timeXN: this.state.timeXN + this.state.intervalTimeXN
+    })
+    }
+
+    
 }
 
-startLoop(){
-  /*this.setState({
-    ctx:ctxL,
-    initialDate:new Date(),
-    interval:setInterval(()=>{this.moveRect()},1000),
-    tenSecDate:new Date()
-  });
-  */
- this.refs.count.placeholder = "23"
- this.state.count.value="123"
-
+movePosY(){
+  let y;
+  if(this.state.y + 5 > this.state.canvasHeight - 20)
+  y=0;
+  else
+  y = this.state.y +5;
+  
+  if(this.state.timeY >= 350)
+  clearInterval(this.state.intervalY);
+  else{
+  let ctxL = this.state.ctx;
+  ctxL.fillStyle='pink'
+  ctxL.fillRect(this.state.x,this.state.y,20,20);
+  ctxL.fillStyle = 'red';
+  ctxL.fillRect(this.state.x,y,20,20);
+  this.setState({
+    y:y,
+    timeY: this.state.timeY + this.state.intervalTimeY
+  })
+  }
+  
 }
+
+movePosYN(){
+  let y;
+  if(this.state.y - 5 < 0)
+  y=this.state.canvasHeight-20;
+  else
+  y = this.state.y -5;
+  
+  if(this.state.timeYN >= 350)
+  clearInterval(this.state.intervalYN);
+  else{
+  let ctxL = this.state.ctx;
+  ctxL.fillStyle='pink'
+  ctxL.fillRect(this.state.x,this.state.y,20,20);
+  ctxL.fillStyle = 'red';
+  ctxL.fillRect(this.state.x,y,20,20);
+  this.setState({
+    y:y,
+    timeYN: this.state.timeYN + this.state.intervalTimeYN
+  })
+  }
+  
+}
+
+start(){
+  if(this.state.start != 1){
+    console.log("started ");
+    this.setState({start:1});
+database().ref('/Runs').once('value',(snap)=>{
+  if(snap.val()==null)
+  this.setState({
+    run:'RUN1',
+    sendDataInterval:setInterval(()=>{this.sendData()},1000),
+    startMotion:setInterval(()=>{this.moveRectGesture()},501),
+    runCount:1
+  })
+  else{
+    let runs=0;
+    database().ref('/Runs').once('value',(snap)=>{
+      snap.forEach((subSnap)=>{
+        ++runs;
+      })
+    }).then(()=>{
+      runs = runs +1;
+      let run = 'RUN' + runs;
+      this.setState({
+        run:run,
+        sendDataInterval:setInterval(()=>{this.sendData()},1000),
+        startMotion:setInterval(()=>{this.moveRectGesture()},501),
+        runCount:runs
+      })
+    })
+  }
+
+})
+}
+}
+
+sendData(){
+  console.log("in sned data")
+  let run = this.state.run;
+  database().ref("/Runs/" + run + '/CO-ORDINATES').once('value',(snap)=>{
+    if(snap.val()==null){
+      let points = [[this.state.x,this.state.y]];
+    database().ref("/Runs/" + run + "/CO-ORDINATES").set({
+      co_ordinates:points
+    })
+  }
+
+    else
+    database().ref("/Runs/" + run + "/CO-ORDINATES").once('value',(snap)=>{
+      let temp  = snap.val().co_ordinates;
+      let points = [this.state.x,this.state.y];
+      temp.push(points);
+      database().ref("/Runs/" + run + "/CO-ORDINATES").set({
+        co_ordinates:temp
+      });
+    });
+
+  })
+}
+
+stop(){
+  if(this.state.start!=0){
+    if(this.state.pause==0){
+clearInterval(this.state.startMotion);
+clearInterval(this.state.sendDataInterval);
+    }
+let ctxL = this.state.ctx;
+ctxL.fillStyle='pink';
+ctxL.fillRect(this.state.x,this.state.y,20,20);
+ctxL.fillStyle='red';
+ctxL.fillRect(0,0,20,20);
+this.setState({
+  start:0,
+  x:0,
+  y:0,
+  pause:0
+});
+  }
+}
+
+pause(){
+let pauseCount = this.state.pauseCount;
+if(this.state.start==1){
+let pause = !this.state.pause;
+if(pause == 1){
+  clearInterval(this.state.startMotion);
+clearInterval(this.state.sendDataInterval);
+console.log("paused " + this.state.pause)
+++pauseCount;
+this.setState({
+  pause:pause,
+  pauseCount:pauseCount
+})
+}
+else if(pause==0){
+  this.setState({
+    startMotion:setInterval(()=>{this.moveRectGesture()},501),
+    sendDataInterval:setInterval(()=>{this.sendData()},1000),
+    pause:pause
+  })
+}
+}
+}
+
+
 render(){
   return (
     
       <View style= {Styles.container}>
-        <TextInput ref="count" placeholder="count" value=""/>
+       <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+         <View>
+         <Text>Run count</Text>
+         <Text>{this.state.runCount}</Text>
+         </View>
+         <View>
+         <Text>Pause count</Text>
+         <Text>{this.state.pauseCount}</Text>
+         </View>
+         <View>
+         <Text>Paused</Text>
+         <Text>{this.state.pause}</Text>
+         </View>
+       </View>
           <Canvas  width={150} height = {300} ref = "canvas"/>
-          <Text>HEy</Text>
-        <Button onPress={()=>{this.stopLoop()}} title="Stop Loop" color="#009933"/>
-        <Button onPress={()=>{this.startLoop()}} title="Start Loop" color="#009933"/>
-        
-       
+          
+          <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+        <Button onPress={()=>{this.stop()}} title="Stop" color="#009933"/>
+        <Button onPress={()=>{this.start()}} title="Start" color="#009933"/>
+        <Button onPress={()=>{this.pause()}} title = "Pause" color="#009933"/>
+        </View>       
       </View>
     
   );
