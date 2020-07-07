@@ -1,6 +1,0 @@
-module Pods_MrSnake_MrSnakeTests {
-  umbrella header "Pods-MrSnake-MrSnakeTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

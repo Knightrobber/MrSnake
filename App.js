@@ -70,7 +70,8 @@ class App extends Component {
    intervalX:null,
    intervalXN:null,
    intervalY:null,
-   intervalYN:null
+   intervalYN:null,
+   reset:0
 
   };
 
@@ -86,8 +87,54 @@ componentDidMount(){
   let ctxL = canvas.getContext("2d")
   ctxL.fillStyle = "pink"
   ctxL.fillRect(0,0,canvas.width,canvas.height);
+  let runs=0;
+  database().ref("Runs").once('value',(snap)=>{
+    if(snap.val()!=null){
+    snap.forEach((subSnap)=>{
+      ++runs;
+    })
+  }
+  }).then(()=>{
+    this.setState({runCount:runs});
+     console.log("yo")
+    let tempRun = "RUN" + runs;
+    database().ref("Runs/" + tempRun +"/CO-ORDINATES/Extremes/stop").once('value',(snap)=>{
+      if(snap.val()==null)
+      {
+        database().ref("Runs/" + tempRun +"/CO-ORDINATES/co_ordinates").once('value',(snap)=>{
+          let arr = snap.val().co_ordinates;
+         let prevCo = arr[arr.length -1];
+         console.log(prevCo);
+         ctxL.fillStyle = "red";
+          ctxL.fillRect(prevCo[0],prevCo[1],20,20);
+          this.setState({
+            x:prevCo[0],
+            y:prevCo[1]
+          });
+          database().ref("Runs/" + tempRun + "/CO-ORDINATES/Extremes/stop").set({
+            stop:prevCo
+          });
+        })
+      }
+
+      else
+      {
+        let stop = snap.val().stop;
+        console.log("Stop coordinates in component did mount ");
+        ctxL.fillStyle = "red";
+        ctxL.fillRect(stop[0],stop[1],20,20);
+        this.setState({
+          x:stop[0],
+          y:stop[1]
+        });
+      }
+    })
+
+  })
+  /*
   ctxL.fillStyle = "red"
   ctxL.fillRect(0,0,20,20);
+  */
   let co_ordinates = [[0,0]]
   database().ref('/Movement').set({
     Co_ordinates:co_ordinates
@@ -100,6 +147,8 @@ componentDidMount(){
     })
     //console.log("the value of " + "y  " + y);
   })
+
+
   
   this.setState({
     ctx:ctxL
@@ -348,9 +397,11 @@ movePosYN(){
 }
 
 start(){
+  
+
   if(this.state.start != 1){
     console.log("started ");
-    this.setState({start:1});
+    this.setState({start:1,reset:0});
 database().ref('/Runs').once('value',(snap)=>{
   if(snap.val()==null)
   this.setState({
@@ -361,11 +412,27 @@ database().ref('/Runs').once('value',(snap)=>{
   })
   else{
     let runs=0;
+    runs = this.state.runCount + 1;
+    let run = 'RUN' + runs;
+    let start = [this.state.x,this.state.y];
+    database().ref("Runs/" + run + "/CO-ORDINATES/Extremes/start").set({
+      start:start
+    }).then(()=>{
+      this.setState({
+        run:run,
+        sendDataInterval:setInterval(()=>{this.sendData()},1000),
+        startMotion:setInterval(()=>{this.moveRectGesture()},501),
+        runCount:runs
+      })
+    });
+
+   /*
     database().ref('/Runs').once('value',(snap)=>{
       snap.forEach((subSnap)=>{
         ++runs;
       })
     }).then(()=>{
+
       runs = runs +1;
       let run = 'RUN' + runs;
       this.setState({
@@ -375,31 +442,38 @@ database().ref('/Runs').once('value',(snap)=>{
         runCount:runs
       })
     })
+    */
+
   }
 
 })
 }
+
 }
 
 sendData(){
   console.log("in sned data")
   let run = this.state.run;
-  database().ref("/Runs/" + run + '/CO-ORDINATES').once('value',(snap)=>{
+  database().ref("/Runs/" + run + '/CO-ORDINATES/co_ordinates').once('value',(snap)=>{
     if(snap.val()==null){
       let points = [[this.state.x,this.state.y]];
-    database().ref("/Runs/" + run + "/CO-ORDINATES").set({
+    database().ref("/Runs/" + run + "/CO-ORDINATES/co_ordinates").set({
       co_ordinates:points
+    }).then(()=>{
+      console.log("Initial Points set");
     })
   }
 
     else
-    database().ref("/Runs/" + run + "/CO-ORDINATES").once('value',(snap)=>{
+    database().ref("/Runs/" + run + "/CO-ORDINATES/co_ordinates").once('value',(snap)=>{
       let temp  = snap.val().co_ordinates;
       let points = [this.state.x,this.state.y];
       temp.push(points);
-      database().ref("/Runs/" + run + "/CO-ORDINATES").set({
+      database().ref("/Runs/" + run + "/CO-ORDINATES/co_ordinates").set({
         co_ordinates:temp
-      });
+      }).then(()=>{
+        console.log("Iterative points set");
+      })
     });
 
   })
@@ -407,21 +481,31 @@ sendData(){
 
 stop(){
   if(this.state.start!=0){
+    
+    let runs = this.state.runCount;
+    let run = 'RUN' + runs;
+    let stop = [this.state.x,this.state.y];
     if(this.state.pause==0){
-clearInterval(this.state.startMotion);
-clearInterval(this.state.sendDataInterval);
-    }
+      clearInterval(this.state.startMotion);
+      clearInterval(this.state.sendDataInterval);
+          }
+      
+    console.log("Stop before sending to database " + stop )
+    database().ref("Runs/" + run + "/CO-ORDINATES/Extremes/stop").set({
+      stop:stop
+    },()=>{console.log("stop after sending to database " + stop)});
+    /*
 let ctxL = this.state.ctx;
 ctxL.fillStyle='pink';
 ctxL.fillRect(this.state.x,this.state.y,20,20);
 ctxL.fillStyle='red';
 ctxL.fillRect(0,0,20,20);
+*/
 this.setState({
   start:0,
-  x:0,
-  y:0,
   pause:0
 });
+
   }
 }
 
@@ -449,6 +533,36 @@ else if(pause==0){
 }
 }
 
+reset = () =>{
+  if(this.state.reset!=1){
+this.setState({
+  reset:1
+});
+if(this.state.pause==0){
+  clearInterval(this.state.startMotion);
+  clearInterval(this.state.sendDataInterval);
+      }
+let stop = [0,0];
+let run = "RUN" + this.state.runCount;
+database().ref("Runs/" + run + "/CO-ORDINATES/Extremes/stop").set({
+  stop:stop
+});
+let ctxL = this.state.ctx;
+
+ctxL.fillStyle = "pink";
+ctxL.fillRect(this.state.x,this.state.y,20,20);
+ctxL.fillStyle = "red";
+ctxL.fillRect(0,0,20,20);
+this.setState({
+  x:0,
+  y:0,
+  start:0,
+  pause:0
+});
+
+    }
+}
+
 
 render(){
   return (
@@ -474,6 +588,7 @@ render(){
         <Button onPress={()=>{this.stop()}} title="Stop" color="#009933"/>
         <Button onPress={()=>{this.start()}} title="Start" color="#009933"/>
         <Button onPress={()=>{this.pause()}} title = "Pause" color="#009933"/>
+        <Button onPress={()=>{this.reset()}} title =  "Reset" color="#009933" />
         </View>       
       </View>
     
